@@ -4,6 +4,7 @@
 # https://aka.ms/yaml
 
 name: $(BuildDefinitionName)$(Rev:.r)
+
 trigger:
 - main
 
@@ -15,7 +16,7 @@ stages:
       displayName: 'Build Process Job'
       pool:
         #vmImage: 'windows-latest'        
-        name: 'Default'
+        name: 'Azure Pipelines'
         #demands:
         #- agent.name -equals 'SOMAgentForJava'
       steps:
@@ -30,37 +31,6 @@ stages:
             effectivePomSkip: false
             sonarQubeRunAnalysis: false
             publishJUnitResults: false
-            testResultsFiles: '**/surefire-reports/TEST-*.xml'
-            goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
-            
-- stage: 'DeploymentStage'
-  displayName: 'SOM Azure DevOps Deployment Pipeline'       
-  jobs:
-    - job: 'DeploymentProcess'
-      displayName: 'Deployment Process Job'
-      pool:
-        vmImage: 'windows-latest'        
-      steps:
-        - script: echo Hello, world!
-          displayName: 'Run a one-line script1'
-
-- stage: 'UnitTest'
-  displayName: 'SOM Azure DevOps Unit Test Pipeline'       
-  jobs:
-    - job: 'UnitTestProcess'
-      displayName: 'Unittest Process Job'
-      pool:
-        vmImage: 'windows-latest'        
-      steps:
-        - task: Maven@3
-          inputs:
-            mavenPomFile: 'pom.xml'
-            javaHomeOption: 'JDKVersion'
-            mavenVersionOption: 'Default'
-            mavenAuthenticateFeed: false
-            effectivePomSkip: false
-            sonarQubeRunAnalysis: false
-            publishJUnitResults: true
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
             goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
             
