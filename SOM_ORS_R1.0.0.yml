@@ -1,22 +1,65 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+name: $(BuildDefinitionName)$(Rev:.r)
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+stages:
+- stage: 'BuildStage'
+  displayName: 'SOM Azure DevOps Build Pipeline'
+  jobs:
+    - job: 'BuildProcess'
+      displayName: 'Build Process Job'
+      pool:
+        #vmImage: 'windows-latest'        
+        name: 'Default'
+        #demands:
+        #- agent.name -equals 'SOMAgentForJava'
+      steps:
+        - script: echo Hello, world!
+          displayName: 'Run a one-line script'
+        - task: Maven@3
+          inputs:
+            mavenPomFile: 'pom.xml'
+            javaHomeOption: 'JDKVersion'
+            mavenVersionOption: 'Default'
+            mavenAuthenticateFeed: false
+            effectivePomSkip: false
+            sonarQubeRunAnalysis: false
+            publishJUnitResults: false
+            testResultsFiles: '**/surefire-reports/TEST-*.xml'
+            goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
+            
+- stage: 'DeploymentStage'
+  displayName: 'SOM Azure DevOps Deployment Pipeline'       
+  jobs:
+    - job: 'DeploymentProcess'
+      displayName: 'Deployment Process Job'
+      pool:
+        vmImage: 'windows-latest'        
+      steps:
+        - script: echo Hello, world!
+          displayName: 'Run a one-line script1'
 
-steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+- stage: 'UnitTest'
+  displayName: 'SOM Azure DevOps Unit Test Pipeline'       
+  jobs:
+    - job: 'UnitTestProcess'
+      displayName: 'Unittest Process Job'
+      pool:
+        vmImage: 'windows-latest'        
+      steps:
+        - task: Maven@3
+          inputs:
+            mavenPomFile: 'pom.xml'
+            javaHomeOption: 'JDKVersion'
+            mavenVersionOption: 'Default'
+            mavenAuthenticateFeed: false
+            effectivePomSkip: false
+            sonarQubeRunAnalysis: false
+            publishJUnitResults: true
+            testResultsFiles: '**/surefire-reports/TEST-*.xml'
+            goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
+            
