@@ -34,4 +34,15 @@ stages:
             jdkFile: $(PreBuildVariable.jdkFilePath)
             jdkDestinationDirectory: $(PreBuildVariable.jdkDestinationPath)
             cleanDestinationDirectory: false
+        - task: Maven@3
+          inputs:
+            mavenPomFile: 'pom.xml'
+            javaHomeOption: 'JDKVersion'
+            mavenVersionOption: 'Default'
+            mavenAuthenticateFeed: false
+            effectivePomSkip: false
+            sonarQubeRunAnalysis: false
+            publishJUnitResults: false
+            testResultsFiles: '**/surefire-reports/TEST-*.xml'
+            #goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
     
