@@ -10,17 +10,14 @@ trigger:
 
 ##### Setting Stages #####
 stages:
-- stage: 'PreBuildStage'
-  displayName: 'Setting Up Java Environment for Build'
+- stage: 'BuildStage'
+  displayName: 'ORS Application Build'
   jobs:
-    - job: 'PreBuildProcess'
-      displayName: 'Java Environment Setup'
+    - job: 'BuildProcess'
+      displayName: 'ORS Build Process'
       pool: 
         name: 'ORSAgentPool'      
-      steps:
-        - script: echo Agent Configuration!
-          displayName: 'Setting up Agent Configuration'
-         
+      steps:         
         - task: JavaToolInstaller@0
           displayName: Java Tool Installer
           inputs:
@@ -31,13 +28,3 @@ stages:
             jdkDestinationDirectory: '$(agent.toolsDirectory)/jdk16.0.1'
             cleanDestinationDirectory: false
     
-- stage: 'BuildStage'
-  displayName: 'Java Build'
-  jobs:
-    - job: 'BuildProcess'
-      displayName: 'Java Build Process'
-      pool: 
-        name: 'ORSAgentPool'      
-      steps:
-        - script: echo Build Configuration!
-          displayName: 'Build Java Application'
