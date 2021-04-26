@@ -18,8 +18,8 @@ stages:
       pool:
         #vmImage: 'windows-latest'        
         name: 'ORSAgentPool'
-        demands:
-        - agent.name -equals 'ORSBuildAgent'
+        #demands:
+        #- agent.name -equals 'ORSBuildAgent'
       steps:
         - script: echo Hello, world!
           displayName: 'Setting up Agent Configuration'
