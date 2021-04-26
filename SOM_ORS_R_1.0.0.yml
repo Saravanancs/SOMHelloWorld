@@ -16,7 +16,7 @@ stages:
     - job: 'BuildProcess'
       displayName: 'Build Process Job'
       pool:
-        vmImage: 'windows-latest'        
+        vmImage: 'ubuntu'        
         #name: 'Default'
         #demands:
         #- agent.name -equals 'SOMAgentForJava'
