@@ -2,14 +2,16 @@
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
+##### Setting Build No #####
 name: $(BuildDefinitionName)$(Rev:.r)
+
 trigger:
 - main
 
+##### Setting Stages #####
 stages:
 - stage: 'BuildStage'
-  displayName: 'SOM Azure DevOps Build Pipeline'
+  displayName: 'SOM ORS Build Pipeline'
   jobs:
     - job: 'BuildProcess'
       displayName: 'Build Process Job'
@@ -20,7 +22,7 @@ stages:
         #- agent.name -equals 'SOMAgentForJava'
       steps:
         - script: echo Hello, world!
-          displayName: 'Run a one-line script'
+          displayName: 'Setting up Agent Configuration'
         - task: Maven@3
           inputs:
             mavenPomFile: 'pom.xml'
@@ -31,5 +33,5 @@ stages:
             sonarQubeRunAnalysis: false
             publishJUnitResults: false
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
-            goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
+            #goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
             
