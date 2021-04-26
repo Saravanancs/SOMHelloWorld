@@ -5,6 +5,9 @@
 ##### Setting Build No #####
 name: $(BuildDefinitionName)$(Rev:.r)
 
+variables:
+  - group: testVariableGroup
+  
 trigger:
 - main
 
