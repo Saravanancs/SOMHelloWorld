@@ -11,7 +11,7 @@ trigger:
 ##### Setting Stages #####
 stages:
 - stage: 'BuildStage'
-  displayName: 'SOM ORS Build Pipeline'
+  displayName: 'Setting Up Java Environment for Build'
   jobs:
     - job: 'BuildProcess'
       displayName: 'Build Process Job'
