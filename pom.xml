@@ -7,7 +7,9 @@
     <artifactId>HelloWorld</artifactId>
     <packaging>jar</packaging>
     <version>1.1.2</version>
-
+    <configuration>
+          <outputDirectory>$(Build.BinariesDirectory)</outputDirectory>
+    </configuration>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
