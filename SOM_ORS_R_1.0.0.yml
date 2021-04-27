@@ -46,6 +46,10 @@ stages:
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
             goals: 'package'
             #goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
-        
-     
-    
+       
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish Artifact: $(Build.DefinitionName).$(Build.BuildId).zip'
+          inputs:
+            PathtoPublish: '$(Build.BinariesDirectory)'
+            ArtifactName: '$(Build.DefinitionName).$(Build.BuildId).zip'
+            artifactType:  container
