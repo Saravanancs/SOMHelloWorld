@@ -21,7 +21,7 @@ stages:
       pool: 
         name: 'ORSAgentPool'      
         demands:
-         - agent.name -equals 'ORSBuildAgent'
+         - agent.name -equals ORSBuildAgent
       steps:         
         - task: JavaToolInstaller@0
           displayName: Java Tool Installer
