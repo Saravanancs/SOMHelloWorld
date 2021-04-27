@@ -27,6 +27,6 @@ stages:
             versionSpec: '8'
             jdkArchitectureOption: 'x64'
             jdkSourceOption: 'LocalDirectory'
-            jdkFile: $(ORSBuildVariable.jdkFilePath)
-            jdkDestinationDirectory: $(ORSBuildVariable.jdkDestinationPath)
+            jdkFile: $(jdkFilePath)
+            jdkDestinationDirectory: $(jdkDestinationPath)
             cleanDestinationDirectory: false
