@@ -7,8 +7,8 @@ name: $(BuildDefinitionName)$(Rev:.r)
 
 trigger:
 - main
-parameters:
-  - name: variablegroup1
+#parameters:
+  #- name: variablegroup1
     #default: ORSBuildVariable
     
 ##### Setting Stages #####
