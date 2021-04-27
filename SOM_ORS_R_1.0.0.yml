@@ -9,7 +9,7 @@ trigger:
 - main
 parameters:
   - name: variablegroup1
-    default: ORSBuildVariable
+    #default: ORSBuildVariable
     
 ##### Setting Stages #####
 stages:
