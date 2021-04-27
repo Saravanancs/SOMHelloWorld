@@ -44,6 +44,8 @@ stages:
             sonarQubeRunAnalysis: false
             publishJUnitResults: false
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
-            goals: 'packages'
+            goals: 'package'
             #goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
+        
+     
     
