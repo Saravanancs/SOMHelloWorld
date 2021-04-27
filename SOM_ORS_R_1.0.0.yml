@@ -6,7 +6,7 @@
 name: $(BuildDefinitionName)$(Rev:.r)
 
 trigger:
-- main
+- none
 #parameters:
   #- name: variablegroup1
     #default: ORSBuildVariable
