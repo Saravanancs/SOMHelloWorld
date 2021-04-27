@@ -6,10 +6,7 @@
     <groupId>org.springframework</groupId>
     <artifactId>HelloWorld</artifactId>
     <packaging>jar</packaging>
-    <version>1.1.2</version>
-    <configuration>
-          <outputDirectory>${project.build.directory}/classes</outputDirectory>
-    </configuration>
+    <version>1.1.2</version>   
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -28,6 +25,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
                             <transformers>
                                 <transformer
                                     implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
