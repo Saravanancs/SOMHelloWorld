@@ -20,6 +20,8 @@ stages:
       displayName: 'ORS Build Process'
       pool: 
         name: 'ORSAgentPool'      
+        demands:
+        - Agent.Name -equals ORSBuildAgent
       steps:         
         - task: JavaToolInstaller@0
           displayName: Java Tool Installer
