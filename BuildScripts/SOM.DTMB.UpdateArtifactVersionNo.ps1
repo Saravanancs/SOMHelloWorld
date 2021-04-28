@@ -10,7 +10,7 @@ Param
     [string] $BuildSourceDirectory = $Env:BUILD_SOURCESDIRECTORY,
 
     [Parameter(Mandatory=$false)]
-    [string] $Verbose = $false 
+    [string] $verbose = $false 
   
 ) 
 
