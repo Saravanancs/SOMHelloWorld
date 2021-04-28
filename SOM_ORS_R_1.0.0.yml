@@ -54,3 +54,6 @@ stages:
             #ArtifactName: '$(Build.DefinitionName).$(Build.BuildId).zip'
             ArtifactName: '$(Build.BuildNumber).zip'
             artifactType:  container
+        - task: PowerShell@2
+          inputs:
+            filePath: '$(Build.SourcesDirectory)\BuildScripts\SOM.DTMB.UpdateArtifactVersionNo.ps1'
